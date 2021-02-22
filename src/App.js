@@ -1,24 +1,40 @@
 import logo from './logo.svg';
+import {useEffect} from 'react'
 import './App.css';
+import {useDispatch} from 'react-redux'
+import {product} from './action/product'
 
+import Headerslider from './components/Headerslider';
+import Head from './components/Head'
+import Home from './components/Home'
+import Cart from './components/Cart'
+import {Provider} from "react-redux";
+import Carddes from './components/body/Carddes'
+import store from "./store";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link
+} from "react-router-dom";
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <Provider store={store}>
+    <div>
+      <Router>
+    <Head/>
+<br/>
+<br/>
+    <Switch>
+        <Route exact path="/" children={<Home/>}/>
+          <Route exact path="/cart" children={<Cart/>}/>
+        <Route exact path="/:id" children={<Carddes/>}/>
+
+
+    </Switch>
+        </Router>
     </div>
+    </Provider>
   );
 }
 
